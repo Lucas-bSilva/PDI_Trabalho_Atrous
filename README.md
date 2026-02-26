@@ -46,28 +46,23 @@ Isso permite aumentar o campo receptivo sem aumentar o tamanho do kernel.
 
 ---
 
-## 🏗 Estrutura do Projeto
+##  Estrutura do Projeto
 
 PDI_TRABALHO_ATROUS/
 │
-├── main.py # Interface de execução
-├── atrous.py # Implementação da correlação dilatada (à trous)
-├── utils.py # Funções auxiliares
+├── 📄 main.py
+├── 📄 atrous.py
+├── 📄 utils.py
 │
-├── configs/
-│ ├── gaussian5.json
-│ ├── box_10x10.json
-│ ├── sobel_h.json
-│ └── sobel_v.json
+├── 📁 configs/
+│   ├── gaussian5.json
+│   ├── box_10x10.json
+│   ├── sobel_h.json
+│   └── sobel_v.json
 │
-├── Shapes.png
-├── testpat.1k.color2.tif
-└── README.md
-
-
-
-
----
+├── 🖼 Shapes.png
+├── 🖼 testpat.1k.color2.tif
+└── 📘 README.md
 
 
 ##  Requisitos
