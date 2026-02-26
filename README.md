@@ -46,14 +46,12 @@ Isso permite aumentar o campo receptivo sem aumentar o tamanho do kernel.
 
 ---
 
+## 🏗 Estrutura do Projeto
 
-##  Estrutura do Projeto
-
-
-PDI_TRABALHO_ATROUS
+PDI_TRABALHO_ATROUS/
 │
 ├── main.py # Interface de execução
-├── atrous.py # Implementação da correlação dilatada
+├── atrous.py # Implementação da correlação dilatada (à trous)
 ├── utils.py # Funções auxiliares
 │
 ├── configs/
@@ -65,6 +63,7 @@ PDI_TRABALHO_ATROUS
 ├── Shapes.png
 ├── testpat.1k.color2.tif
 └── README.md
+
 
 
 
