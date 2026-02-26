@@ -46,7 +46,10 @@ Isso permite aumentar o campo receptivo sem aumentar o tamanho do kernel.
 
 ---
 
+
 ##  Estrutura do Projeto
+
+
 PDI_TRABALHO_ATROUS
 │
 ├── main.py # Interface de execução
@@ -63,7 +66,10 @@ PDI_TRABALHO_ATROUS
 ├── testpat.1k.color2.tif
 └── README.md
 
+
+
 ---
+
 
 ##  Requisitos
 
@@ -116,16 +122,16 @@ Exemplo:
   "kernel": [...]
 }
 
-Campos
-Campo	Função
-kernel	Matriz da máscara
-r	Fator de dilatação
-stride	Passo da janela
-activation	Função de ativação
-is_sobel	Ativa pós-processamento específico
+---- Campos:
+Campo	                    Função
+kernel 	             Matriz da máscara
+r	                   Fator de dilatação
+stride        	      Passo da janela
+activation	          Função de ativação
+is_sobel	            Ativa pós-processamento específico
 
 
- Possibilidades de Teste
+ --- Possibilidades de Teste:
 
 Alterar valor de r para testar dilatação
 
