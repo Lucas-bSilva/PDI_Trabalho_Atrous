@@ -3,24 +3,24 @@ import numpy as np
 
 def apply_activation(x, activation):
     """
-    Aplica uma função de ativação ao resultado da correlação.
+    Aplica uma funcao de ativacao ao resultado da correlacao.
 
-    Esta função é utilizada após o cálculo da correlação para modificar
-    os valores da imagem resultante de acordo com a função de ativação
+    Esta funcao é utilizada após o calculo da correlacao para modificar
+    os valores da imagem resultante de acordo com a funcao de ativacao
     especificada.
 
     Parâmetros:
     x : numpy.ndarray
-        Matriz contendo os valores resultantes da correlação.
+        Matriz contendo os valores resultantes da correlacao.
     activation : str
-        Tipo de função de ativação a ser aplicada. Atualmente suportado:
-        - "relu": aplica a função ReLU (Rectified Linear Unit), que
+        Tipo de funcao de ativacao a ser aplicada. Atualmente suportado:
+        - "relu": aplica a funcao ReLU (Rectified Linear Unit), que
           substitui valores negativos por zero.
-        - "identity": mantém os valores originais sem alteração.
+        - "identity": mantém os valores originais sem alteracao.
 
     Retorno:
     numpy.ndarray
-        Matriz com a função de ativação aplicada.
+        Matriz com a funcao de ativacao aplicada.
     """
     if activation == "relu":
         return np.maximum(x, 0)
@@ -29,12 +29,12 @@ def apply_activation(x, activation):
 
 def atrous_correlation_rgb(img, kernel, r=1, stride=1, activation="identity"):
     """
-    Realiza a correlação espacial dilatada (à trous) em uma imagem RGB.
+    Realiza a correlacao espacial dilatada (à trous) em uma imagem RGB.
 
-    Esta função aplica manualmente um operador de correlação utilizando
-    um kernel (máscara) sobre uma imagem colorida de 24 bits (RGB).
-    A operação considera dilatação do kernel (parâmetro r), permitindo
-    ampliar o campo receptivo sem aumentar o tamanho da máscara.
+    Esta funcao aplica manualmente um operador de correlacao utilizando
+    um kernel (mascara) sobre uma imagem colorida de 24 bits (RGB).
+    A operacao considera dilatacao do kernel (parâmetro r), permitindo
+    ampliar o campo receptivo sem aumentar o tamanho da mascara.
 
     O processamento é realizado canal por canal (R, G e B) e sem uso
     de padding, conforme as restrições do projeto.
@@ -43,27 +43,27 @@ def atrous_correlation_rgb(img, kernel, r=1, stride=1, activation="identity"):
     img : numpy.ndarray
         Imagem de entrada no formato RGB com tipo uint8.
     kernel : list ou numpy.ndarray
-        Matriz que representa a máscara de correlação.
+        Matriz que representa a mascara de correlacao.
     r : int, opcional
-        Fator de dilatação do kernel. Define o espaçamento entre os
-        elementos da máscara durante a correlação. Padrão = 1.
+        Fator de dilatacao do kernel. Define o espaçamento entre os
+        elementos da mascara durante a correlacao. Padrão = 1.
     stride : int, opcional
-        Passo de deslocamento da janela de correlação sobre a imagem.
+        Passo de deslocamento da janela de correlacao sobre a imagem.
         Padrão = 1.
     activation : str, opcional
-        Função de ativação aplicada após a correlação. Pode ser:
+        Funcao de ativacao aplicada após a correlacao. Pode ser:
         - "identity": mantém os valores calculados
         - "relu": substitui valores negativos por zero
 
     Retorno:
     numpy.ndarray
-        Imagem resultante da correlação, convertida novamente para
+        Imagem resultante da correlacao, convertida novamente para
         o formato uint8 no intervalo [0,255].
 
     Exceções:
     ValueError
         Lançada caso a imagem não esteja no formato uint8 ou caso
-        o kernel seja maior que a imagem considerando a dilatação.
+        o kernel seja maior que a imagem considerando a dilatacao.
     """
 
     if img.dtype != np.uint8:
@@ -100,5 +100,6 @@ def atrous_correlation_rgb(img, kernel, r=1, stride=1, activation="identity"):
 
     output = apply_activation(output, activation)
 
-    output = np.clip(output, 0, 255)
-    return output.astype(np.uint8)
+    # output = np.clip(output, 0, 255)
+    # return output.astype(np.uint8)
+    return output

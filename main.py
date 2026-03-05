@@ -11,8 +11,8 @@ from utils import sobel_postprocess
 
 def load_config(path):
     """
-    Carrega o arquivo de configuração JSON contendo os parâmetros
-    do filtro (kernel, dilatação, stride, ativação e flags opcionais).
+    Carrega o arquivo de configuracao JSON contendo os parâmetros
+    do filtro (kernel, dilatacao, stride, ativacao e flags opcionais).
     """
     with open(path, 'r') as f:
         return json.load(f)
@@ -45,14 +45,14 @@ def show_images(original, result, title="Resultado"):
 
 def main():
     """
-    Função principal do programa.
+    Funcao principal do programa.
 
     Responsável por:
     - Ler argumentos da linha de comando
     - Carregar imagem de entrada
-    - Carregar configuração do filtro
-    - Executar a correlação dilatada
-    - Aplicar pós-processamento Sobel (quando necessário)
+    - Carregar configuracao do filtro
+    - Executar a correlacao dilatada
+    - Aplicar pos-processamento Sobel (quando necessário)
     - Salvar a imagem resultante
     - Exibir o resultado opcionalmente
     """
@@ -80,6 +80,10 @@ def main():
     # aplica pós-processamento específico caso o filtro seja Sobel
     if config.get("is_sobel", False):
         result = sobel_postprocess(result)
+    else:
+        # ADICIONE ESTA PARTE: 
+        # Para filtros normais (Gauss, Box), limita e converte agora
+        result = np.clip(result, 0, 255).astype(np.uint8)
 
     Image.fromarray(result).save(args.output)
 
