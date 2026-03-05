@@ -1,8 +1,18 @@
 {
   "name": "box_10x10",
+  "description": "Filtro Box 10x10 utilizado para suavização intensa da imagem por média uniforme dos pixels da vizinhança.",
+
   "r": 1,
+  "r_description": "Fator de dilatação do kernel. Valor 1 indica que não há espaçamento entre os elementos da máscara.",
+
   "stride": 1,
+  "stride_description": "Passo de deslocamento da janela de correlação sobre a imagem.",
+
   "activation": "identity",
+  "activation_description": "Função de ativação aplicada após a correlação. 'identity' mantém os valores calculados sem alteração.",
+
+  "kernel_description": "Máscara Box 10x10 com pesos uniformes. Cada valor é 0.01, garantindo que a soma total do kernel seja aproximadamente 1, produzindo uma média dos 100 pixels da vizinhança.",
+
   "kernel": [
     [0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01],
     [0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01],

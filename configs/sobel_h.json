@@ -1,9 +1,21 @@
 {
   "name": "sobel_horizontal",
+  "description": "Operador Sobel Horizontal utilizado para detecção de bordas horizontais na imagem, baseado na aproximação do gradiente vertical.",
+
   "r": 1,
+  "r_description": "Fator de dilatação do kernel. Valor 1 indica aplicação normal da máscara sem espaçamento entre os elementos.",
+
   "stride": 1,
+  "stride_description": "Passo de deslocamento da janela de correlação sobre a imagem. Valor 1 percorre a imagem pixel a pixel.",
+
   "activation": "identity",
+  "activation_description": "Função de ativação aplicada após a correlação. 'identity' mantém os valores do gradiente antes do pós-processamento.",
+
   "is_sobel": true,
+  "is_sobel_description": "Indica que o filtro corresponde a um operador Sobel e que deve ser aplicado pós-processamento específico (valor absoluto e normalização).",
+
+  "kernel_description": "Máscara Sobel 3x3 utilizada para calcular o gradiente vertical da imagem, destacando bordas horizontais.",
+
   "kernel": [
     [-1, -2, -1],
     [0, 0, 0],

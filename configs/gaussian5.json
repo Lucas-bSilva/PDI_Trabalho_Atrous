@@ -1,8 +1,18 @@
 {
   "name": "gaussian_5x5",
+  "description": "Filtro Gaussiano 5x5 utilizado para suavização isotrópica da imagem, reduzindo ruído e altas frequências.",
+  
   "r": 1,
+  "r_description": "Fator de dilatação do kernel. Valor 1 significa kernel sem espaçamento entre elementos.",
+  
   "stride": 1,
+  "stride_description": "Passo de deslocamento da janela de correlação sobre a imagem.",
+  
   "activation": "identity",
+  "activation_description": "Função de ativação aplicada após a correlação. 'identity' mantém os valores originais.",
+  
+  "kernel_description": "Matriz Gaussiana 5x5 normalizada. Os valores representam pesos da distribuição Gaussiana utilizados para suavização.",
+  
   "kernel": [
     [0.00390625, 0.015625, 0.0234375, 0.015625, 0.00390625],
     [0.015625, 0.0625, 0.09375, 0.0625, 0.015625],

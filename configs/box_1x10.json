@@ -1,8 +1,18 @@
 {
   "name": "box_1x10",
+  "description": "Filtro Box 1x10 utilizado para suavização horizontal da imagem, calculando a média de 10 pixels consecutivos ao longo do eixo horizontal.",
+
   "r": 1,
+  "r_description": "Fator de dilatação do kernel. Valor 1 indica que os elementos da máscara são aplicados em pixels adjacentes, sem espaçamento.",
+
   "stride": 1,
+  "stride_description": "Passo de deslocamento da janela de correlação sobre a imagem. Valor 1 percorre a imagem pixel a pixel.",
+
   "activation": "identity",
+  "activation_description": "Função de ativação aplicada após a correlação. 'identity' mantém os valores calculados sem modificação.",
+
+  "kernel_description": "Máscara Box 1x10 com pesos uniformes. Cada valor é 0.1, garantindo que a soma total do kernel seja 1, o que produz a média dos 10 pixels da vizinhança horizontal.",
+
   "kernel": [
     [0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1]
   ]
