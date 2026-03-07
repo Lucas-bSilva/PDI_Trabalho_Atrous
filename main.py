@@ -1,27 +1,26 @@
 import argparse
 import json
+import os
 import numpy as np
 from PIL import Image
 import tkinter as tk
 from PIL import ImageTk
 
 from atrous import atrous_correlation_rgb
-from utils import sobel_postprocess
+from utils import sobel_postprocess, to_uint8_clip
 
 
 def load_config(path):
     """
-    Carrega o arquivo de configuracao JSON contendo os parâmetros
-    do filtro (kernel, dilatacao, stride, ativacao e flags opcionais).
+    Carrega o arquivo JSON com os parâmetros do filtro.
     """
-    with open(path, 'r') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 
 def show_images(original, result, title="Resultado"):
     """
-    Exibe a imagem original e a imagem resultante lado a lado
-    em uma janela gráfica utilizando Tkinter.
+    Exibe a imagem original e o resultado lado a lado.
     """
     root = tk.Tk()
     root.title(title)
@@ -45,16 +44,7 @@ def show_images(original, result, title="Resultado"):
 
 def main():
     """
-    Funcao principal do programa.
-
-    Responsável por:
-    - Ler argumentos da linha de comando
-    - Carregar imagem de entrada
-    - Carregar configuracao do filtro
-    - Executar a correlacao dilatada
-    - Aplicar pos-processamento Sobel (quando necessário)
-    - Salvar a imagem resultante
-    - Exibir o resultado opcionalmente
+    Função principal do programa.
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", required=True)
@@ -77,17 +67,19 @@ def main():
         activation=config["activation"]
     )
 
-    # aplica pós-processamento específico caso o filtro seja Sobel
+    # se for Sobel, aplica valor absoluto + normalização
     if config.get("is_sobel", False):
         result = sobel_postprocess(result)
     else:
-        # ADICIONE ESTA PARTE: 
-        # Para filtros normais (Gauss, Box), limita e converte agora
-        result = np.clip(result, 0, 255).astype(np.uint8)
+        result = to_uint8_clip(result)
+
+    # cria a pasta de saída se necessário
+    output_dir = os.path.dirname(args.output)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
 
     Image.fromarray(result).save(args.output)
 
-    # exibe as imagens caso a flag --show seja utilizada
     if args.show:
         show_images(img_np, result, config["name"])
 

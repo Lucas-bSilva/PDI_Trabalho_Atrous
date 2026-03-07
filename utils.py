@@ -3,14 +3,14 @@ import numpy as np
 
 def histogram_stretch(channel):
     """
-    Realiza expansão linear do histograma (histogram stretching)
-    em um canal da imagem, normalizando os valores para o intervalo [0,255].
+    Realiza expansão linear do histograma, normalizando os valores
+    para o intervalo [0,255].
     """
     min_val = np.min(channel)
     max_val = np.max(channel)
 
     if max_val - min_val == 0:
-        return np.zeros_like(channel)
+        return np.zeros_like(channel, dtype=np.uint8)
 
     stretched = (channel - min_val) * (255.0 / (max_val - min_val))
     return np.clip(stretched, 0, 255).astype(np.uint8)
@@ -18,12 +18,9 @@ def histogram_stretch(channel):
 
 def sobel_postprocess(img):
     """
-    Pós-processamento aplicado aos resultados do operador Sobel.
-
-    O procedimento consiste em:
-    - calcular o valor absoluto dos gradientes
-    - aplicar expansão de histograma em cada canal RGB
-    para melhorar a visualização das bordas detectadas.
+    Pós-processamento para filtros Sobel:
+    - aplica valor absoluto
+    - aplica expansão de histograma em cada canal
     """
     img = np.abs(img.astype(np.float32))
     result = np.zeros_like(img, dtype=np.uint8)
@@ -32,3 +29,11 @@ def sobel_postprocess(img):
         result[:, :, c] = histogram_stretch(img[:, :, c])
 
     return result
+
+
+def to_uint8_clip(img):
+    """
+    Converte a saída da correlação comum para uint8,
+    limitando os valores ao intervalo [0,255].
+    """
+    return np.clip(img, 0, 255).astype(np.uint8)
